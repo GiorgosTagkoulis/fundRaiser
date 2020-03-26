@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  postgres:
+    image: 'postgres:11.5'
+    container_name: 'fundRaising-postgres'
+    ports:
+      - 5432:5432
+    networks:
+      - postgres-network
+    environment:
+      - POSTGRES_USER=fundRaising
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=fundRaiser
+    volumes:
+      - ./db/data/:/var/lib/postgresql/data
+      - ./db/migration:/var/lib/postgresql/migration
+  pgadmin:
+    image: thajeztah/pgadmin4
+    container_name: 'fundRaising-pgadmin'
+    networks:
+      - postgres-network
+    ports:
+      - 5050:5050
+networks:
+  postgres-network:
+    driver: bridge
