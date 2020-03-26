@@ -8,6 +8,7 @@ This repo is a client-server web application for a fundraising widget. The tech 
 </ul>
 
 ### Database
+Since the database run as a docker container, it is mandatory to have installed the Docker daemon in your system.  
 In the terminal navigate to the root directory of the project and type ``make start-db`` to start the database, 
 `make stop-db` to stop the database, and the first time you will need to create the table that will hold the 
 donations so type `make create-table`.
