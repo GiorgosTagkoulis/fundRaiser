@@ -18,11 +18,12 @@ to reset the database.
 ### Server
 In order to start the server, you need to have installed Java 8 and Maven.  
 Then from the root directory of the project type ``make start-server`` and the server will be up in 
-port 8080. Stop the server with Ctrl-X.  
+port 8080. Stop the server with Ctrl-X. Alternatively, import the project to an IDE, like IntelliJ 
+and run it from there.  
 The server provides two endpoints:
 <ul>
-    <li>GET request <strong>/funds</strong></li>
-    <li>POST request <strong>/donations</strong></li>
+    <li>GET request:    <strong>/funds</strong></li>
+    <li>POST request:   <strong>/donations</strong></li>
 </ul> 
 
 ### Client
