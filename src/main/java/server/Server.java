@@ -6,6 +6,7 @@ import db.PostgreSql;
 public class Server {
     public static void main(String[] args) {
 
+        port(8080);
         PostgreSql db = new PostgreSql();
 
         get("/funds", (req, res) ->
