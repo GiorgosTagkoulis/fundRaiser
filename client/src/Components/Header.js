@@ -1,7 +1,14 @@
 import React from "react";
+import styled from "styled-components";
+
+const Title = styled.h2`
+  font-family: "rooney-web", "AmericanTypewriter", Rockwell, serif;
+  font-size: 2.5em;
+  font-weight: bold;
+`;
 
 const Header = () => {
-  return <h2>FundRasing Widget</h2>;
+  return <Title>FundRasing Widget</Title>;
 };
 
 export default Header;
