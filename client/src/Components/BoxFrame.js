@@ -23,13 +23,40 @@ const ProgressBar = styled.div`
   width: ${props => props.percentage}%;
 `;
 
-const ProgressBarContent = styled.div`
+const BoxFrameContent = styled.div`
   margin: 10px;
+`;
+
+const InputSubmit = styled.input.attrs({
+  type: "submit",
+  id: "fundraise_pledgeButton",
+  value: "Pledge"
+})`
+  padding: 12px;
+  background-color: #1cbc2c;
+  border: 0px;
+  color: #fff;
+  border-radius: 5px;
+`;
+
+const InputText = styled.input.attrs({
+  type: "text",
+  id: "fundraise_amount"
+})`
+  padding: 11px;
+  border-radius: 5px;
+  border: 1px solid #eaeaea;
 `;
 
 class BoxFrame extends Component {
   state = {
+    amount: null,
     has_donated: false
+  };
+
+  updateDonation = event => {
+    event.preventDefault();
+    this.props.callback(500);
   };
 
   render() {
@@ -40,8 +67,7 @@ class BoxFrame extends Component {
             percentage={this.props.sum < 1000 ? this.props.sum / 10 : 100}
           ></ProgressBar>
         </ProgressBarContainer>
-        <ProgressBarContent></ProgressBarContent>
-        <ProgressBarContent>
+        <BoxFrameContent>
           <p>
             Only 3 days left to fund this project,{" "}
             <strong id="fundraise_currentFundingText">${this.props.sum}</strong>{" "}
@@ -52,7 +78,11 @@ class BoxFrame extends Component {
             Pledge money by entering the sum in the field below and press
             pledge, we already know your credit card details.
           </p>
-        </ProgressBarContent>
+          <form id="fundraise_form" onSubmit={this.updateDonation}>
+            <InputText />
+            <InputSubmit />
+          </form>
+        </BoxFrameContent>
       </Wrapper>
     );
   }

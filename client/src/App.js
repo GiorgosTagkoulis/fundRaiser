@@ -26,12 +26,24 @@ class App extends Component {
       .then(res => this.setState({ sum: res.sum }));
   };
 
+  sendDonation = amount => {
+    const endpoint = `${API_URL}/donation`;
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: JSON.stringify({ donation: 100 })
+    };
+    fetch(endpoint, requestOptions)
+      .then(res => res.json())
+      .then(res => this.setState({ sum: res.sum }));
+  };
+
   render() {
     return (
       <Wrapper>
         <Header />
         <Tooltip sum={this.state.sum} />
-        <BoxFrame sum={this.state.sum} />
+        <BoxFrame sum={this.state.sum} callback={this.sendDonation} />
       </Wrapper>
     );
   }
