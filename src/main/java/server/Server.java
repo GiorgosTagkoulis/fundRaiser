@@ -15,7 +15,7 @@ public class Server {
 
         post("/donation", (req,res)-> {
             res.status(201);
-            return db.saveDonation(Integer.parseInt(req.queryParams("donation")));
+            return db.saveDonation(Integer.parseInt(req.body().replaceAll("[^0-9]", "")));
         }, JsonUtil.json());
 
         // Enable CORS in Spark Java. Credits: https://gist.github.com/saeidzebardast/e375b7d17be3e0f4dddf
