@@ -11,4 +11,4 @@ start-server:
 	mvn compile && mvn exec:java -Dexec.mainClass="server.Server"
 
 start-client:
-	cd client && yarn start
+	cd client && npm run start

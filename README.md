@@ -27,3 +27,7 @@ The server provides two endpoints:
 </ul> 
 
 ### Client
+The first time that you clone the repository, you need to ``cd client && npm run install``, in order
+to install all the react dependencies. Then from the root directory of the project type
+``make start-client`` and the client will be up in port 3000.  
+Navigate to your favourite browser to check the app. 
