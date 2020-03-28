@@ -27,20 +27,10 @@ const BoxFrameContent = styled.div`
   margin: 10px;
 `;
 
-const InputSubmit = styled.input.attrs({
-  type: "submit",
-  id: "fundraise_pledgeButton",
-  value: "Pledge"
-})`
-  padding: 12px;
-  background-color: #1cbc2c;
-  border: 0px;
-  color: #fff;
-  border-radius: 5px;
-`;
-
 const InputText = styled.input.attrs({
-  type: "text",
+  type: "number",
+  min: "0",
+  step: "1",
   id: "fundraise_amount"
 })`
   padding: 11px;
@@ -48,15 +38,51 @@ const InputText = styled.input.attrs({
   border: 1px solid #eaeaea;
 `;
 
+const InputSubmit = styled.input.attrs({
+  type: "submit",
+  id: "fundraise_pledgeButton",
+  value: "Pledge"
+})`
+  margin-top: 2px;
+  padding: 12px;
+  background-color: #1cbc2c;
+  border: 0px;
+  color: #fff;
+  border-radius: 5px;
+`;
+
+const Notification = styled.div`
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  border-color: #1cbc2c;
+  background-color: #dff0d8;
+`;
+
+const Link = styled.a`
+  color: #000;
+`;
+
 class BoxFrame extends Component {
   state = {
-    amount: null,
+    value: "",
     has_donated: false
   };
 
+  handleChange = event => {
+    this.setState({ value: event.target.value });
+  };
+
   updateDonation = event => {
+    this.props.callback(this.state.value);
+    this.setState({ value: "", has_donated: true });
     event.preventDefault();
-    this.props.callback(500);
+  };
+
+  handleClick = e => {
+    e.preventDefault();
+    this.setState({ has_donated: false });
   };
 
   render() {
@@ -78,10 +104,22 @@ class BoxFrame extends Component {
             Pledge money by entering the sum in the field below and press
             pledge, we already know your credit card details.
           </p>
-          <form id="fundraise_form" onSubmit={this.updateDonation}>
-            <InputText />
-            <InputSubmit />
-          </form>
+          {!this.state.has_donated ? (
+            <form id="fundraise_form" onSubmit={this.updateDonation}>
+              <InputText
+                value={this.state.value}
+                onChange={this.handleChange}
+              />
+              <InputSubmit />
+            </form>
+          ) : (
+            <Notification>
+              Thank you for your pledge!{" "}
+              <Link href="#" onClick={this.handleClick}>
+                Close
+              </Link>
+            </Notification>
+          )}
         </BoxFrameContent>
       </Wrapper>
     );

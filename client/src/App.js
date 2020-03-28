@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from "./Components/Header";
 import BoxFrame from "./Components/BoxFrame";
 import Tooltip from "./Components/Tooltip";
 import { API_URL } from "./config";
@@ -10,9 +9,15 @@ const Wrapper = styled.div`
   max-width: 630px;
 `;
 
+const Header = styled.h1`
+  font-family: "rooney-web", "AmericanTypewriter", Rockwell, serif;
+  font-size: 2.5em;
+  font-weight: bold;
+`;
+
 class App extends Component {
   state = {
-    sum: null
+    sum: ""
   };
 
   componentDidMount() {
@@ -31,7 +36,7 @@ class App extends Component {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: JSON.stringify({ donation: 100 })
+      body: JSON.stringify({ donation: amount })
     };
     fetch(endpoint, requestOptions)
       .then(res => res.json())
@@ -41,7 +46,7 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Header />
+        <Header>FundRasing Widget</Header>
         <Tooltip sum={this.state.sum} />
         <BoxFrame sum={this.state.sum} callback={this.sendDonation} />
       </Wrapper>
