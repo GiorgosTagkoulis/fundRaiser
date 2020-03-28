@@ -3,11 +3,16 @@ import Header from "./Components/Header";
 import BoxFrame from "./Components/BoxFrame";
 import Tooltip from "./Components/Tooltip";
 import { API_URL } from "./config";
-import "./App.css";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  margin: 2em auto;
+  max-width: 630px;
+`;
 
 class App extends Component {
   state = {
-    sum: 0
+    sum: null
   };
 
   componentDidMount() {
@@ -23,11 +28,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <Header />
         <Tooltip sum={this.state.sum} />
         <BoxFrame sum={this.state.sum} />
-      </div>
+      </Wrapper>
     );
   }
 }

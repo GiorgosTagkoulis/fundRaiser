@@ -12,9 +12,13 @@ const Wrapper = styled.div`
 `;
 
 const Tooltip = props => {
+  const text = " of the goal funded";
   return (
     <Wrapper>
-      <strong id="fundraise_remainingText">0%</strong> of the goal funded
+      <strong id="fundraise_remainingText">
+        {props.sum < 1000 ? props.sum / 10 : 100}%
+      </strong>
+      {text}
     </Wrapper>
   );
 };
