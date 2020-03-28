@@ -36,6 +36,7 @@ const InputText = styled.input.attrs({
   padding: 11px;
   border-radius: 5px;
   border: 1px solid #eaeaea;
+  max-width: -moz-available;
 `;
 
 const InputSubmit = styled.input.attrs({
@@ -94,12 +95,24 @@ class BoxFrame extends Component {
           ></ProgressBar>
         </ProgressBarContainer>
         <BoxFrameContent>
-          <p>
-            Only 3 days left to fund this project,{" "}
-            <strong id="fundraise_currentFundingText">${this.props.sum}</strong>{" "}
-            has been raised towards the goal to raise{" "}
-            <strong id="fundraise_goalText">$1000</strong>.
-          </p>
+          {this.props.sum < 1000 ? (
+            <p>
+              Only 3 days left to fund this project,{" "}
+              <strong id="fundraise_currentFundingText">
+                ${this.props.sum}
+              </strong>{" "}
+              has been raised towards the goal to raise{" "}
+              <strong id="fundraise_goalText">$1000</strong>.
+            </p>
+          ) : (
+            <p>
+              Target achieved.{" "}
+              <strong id="fundraise_currentFundingText">
+                ${this.props.sum}
+              </strong>{" "}
+              has been raised. Keep going though!
+            </p>
+          )}
           <p>
             Pledge money by entering the sum in the field below and press
             pledge, we already know your credit card details.
